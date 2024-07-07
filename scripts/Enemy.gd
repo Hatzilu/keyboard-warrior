@@ -6,6 +6,10 @@ const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz'
 
 @onready var word = $Label
 
+@onready var animation = $AnimatedSprite2D
+
+
+var should_die = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("Enemies")
@@ -16,6 +20,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
 	#var velocity: Vector2 = -1 * SPEED
+	if (should_die):
+		return
 	
 	self.velocity.x = -1 * SPEED
 	# Move the character
@@ -25,7 +31,10 @@ func _process(delta: float):
 func check_input_text(text: String):
 	print("hi im enemy, text is ")
 	if (text == word.text):
-		self.queue_free()
+		self.velocity.x = 0
+		should_die = true
+		animation.play("die")
+		#self.queue_free()
 
 
 
@@ -35,3 +44,8 @@ func generate_word(chars, length):
 	for i in range(length):
 		word += chars[randi()% n_char]
 	return word
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if (animation.animation == "die"):
+		queue_free()

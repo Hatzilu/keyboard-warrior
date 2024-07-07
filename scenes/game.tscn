@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://eftoji41e71w"]
+[gd_scene load_steps=26 format=3 uid="uid://eftoji41e71w"]
 
 [ext_resource type="Texture2D" uid="uid://ctcdvur27cewn" path="res://assets/sprites/world_tileset.png" id="1_6kfvj"]
 [ext_resource type="Texture2D" uid="uid://d3n21ieodibhd" path="res://assets/sprites/knight.png" id="2_ero44"]
@@ -482,6 +482,22 @@ region = Rect2(48, 24, 24, 24)
 atlas = ExtResource("3_4uh7v")
 region = Rect2(72, 24, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbc7n"]
+atlas = ExtResource("3_4uh7v")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_softt"]
+atlas = ExtResource("3_4uh7v")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4f2s"]
+atlas = ExtResource("3_4uh7v")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv43c"]
+atlas = ExtResource("3_4uh7v")
+region = Rect2(72, 48, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_0wrxd"]
 animations = [{
 "frames": [{
@@ -500,6 +516,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbc7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_softt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4f2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv43c")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o7sg1"]
@@ -525,7 +558,7 @@ zoom = Vector2(4.175, 4.175)
 position = Vector2(-23, -12)
 sprite_frames = SubResource("SpriteFrames_1gtak")
 autoplay = "default"
-frame_progress = 0.411499
+frame_progress = 0.500702
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 
@@ -539,7 +572,10 @@ script = ExtResource("3_3anxq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 sprite_frames = SubResource("SpriteFrames_0wrxd")
+animation = &"die"
 autoplay = "default"
+frame = 3
+frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
@@ -584,4 +620,5 @@ offset_top = -2.00001
 offset_right = 68.0
 offset_bottom = 29.0
 
+[connection signal="animation_finished" from="Enemy/AnimatedSprite2D" to="Enemy" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="text_submitted" from="Control/LineEdit" to="Control" method="_on_line_edit_text_submitted"]
