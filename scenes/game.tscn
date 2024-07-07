@@ -525,7 +525,7 @@ zoom = Vector2(4.175, 4.175)
 position = Vector2(-23, -12)
 sprite_frames = SubResource("SpriteFrames_1gtak")
 autoplay = "default"
-frame_progress = 0.0858039
+frame_progress = 0.411499
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 
@@ -533,7 +533,7 @@ frame_progress = 0.0858039
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_us61m")
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
+[node name="Enemy" type="CharacterBody2D" parent="." groups=["Enemies"]]
 position = Vector2(181, -12)
 script = ExtResource("3_3anxq")
 
