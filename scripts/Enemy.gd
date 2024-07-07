@@ -34,7 +34,6 @@ func check_input_text(text: String):
 		self.velocity.x = 0
 		should_die = true
 		animation.play("die")
-		#self.queue_free()
 
 
 
@@ -47,5 +46,6 @@ func generate_word(chars, length):
 
 
 func _on_animated_sprite_2d_animation_finished():
+	print(animation.animation)
 	if (animation.animation == "die"):
 		queue_free()

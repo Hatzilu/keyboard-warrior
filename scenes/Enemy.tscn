@@ -1,0 +1,107 @@
+[gd_scene load_steps=15 format=3 uid="uid://b0jmn38o5hal2"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_pqsvw"]
+[ext_resource type="Texture2D" uid="uid://dlgut1vbsg5h8" path="res://assets/sprites/slime_green.png" id="2_xr818"]
+[ext_resource type="FontFile" uid="uid://bckr2om4tgbio" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_04iha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk4kb"]
+atlas = ExtResource("2_xr818")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4f4t"]
+atlas = ExtResource("2_xr818")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ploii"]
+atlas = ExtResource("2_xr818")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcnjv"]
+atlas = ExtResource("2_xr818")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbc7n"]
+atlas = ExtResource("2_xr818")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_softt"]
+atlas = ExtResource("2_xr818")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4f2s"]
+atlas = ExtResource("2_xr818")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv43c"]
+atlas = ExtResource("2_xr818")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgxui"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk4kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4f4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ploii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcnjv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbc7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_softt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4f2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv43c")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1kac"]
+size = Vector2(14, 12)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pv27w"]
+font = ExtResource("3_04iha")
+font_size = 32
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_pqsvw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jgxui")
+animation = &"die"
+autoplay = "default"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_c1kac")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -12.0
+offset_top = -18.0
+offset_right = 44.0
+offset_bottom = 27.0
+scale = Vector2(0.405, 0.405)
+theme_override_font_sizes/font_size = 20
+text = "hi"
+label_settings = SubResource("LabelSettings_pv27w")
+horizontal_alignment = 1
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
