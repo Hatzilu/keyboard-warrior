@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://eftoji41e71w"]
+[gd_scene load_steps=22 format=3 uid="uid://eftoji41e71w"]
 
 [ext_resource type="Texture2D" uid="uid://ctcdvur27cewn" path="res://assets/sprites/world_tileset.png" id="1_6kfvj"]
 [ext_resource type="Texture2D" uid="uid://d3n21ieodibhd" path="res://assets/sprites/knight.png" id="2_ero44"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="3_3anxq"]
 [ext_resource type="Texture2D" uid="uid://dlgut1vbsg5h8" path="res://assets/sprites/slime_green.png" id="3_4uh7v"]
+[ext_resource type="FontFile" uid="uid://bckr2om4tgbio" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_nwjut"]
+[ext_resource type="Script" path="res://scripts/KeyboardInput.gd" id="6_6m3qh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfssy"]
 texture = ExtResource("1_6kfvj")
@@ -503,6 +505,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o7sg1"]
 size = Vector2(14, 12)
 
+[sub_resource type="LabelSettings" id="LabelSettings_jatsq"]
+font = ExtResource("5_nwjut")
+font_size = 32
+
 [node name="Game" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -519,7 +525,7 @@ zoom = Vector2(4.175, 4.175)
 position = Vector2(-23, -12)
 sprite_frames = SubResource("SpriteFrames_1gtak")
 autoplay = "default"
-frame_progress = 0.174089
+frame_progress = 0.0858039
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 
@@ -539,3 +545,43 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_o7sg1")
+
+[node name="Label" type="Label" parent="Enemy"]
+offset_left = -12.0
+offset_top = -18.0
+offset_right = 44.0
+offset_bottom = 27.0
+scale = Vector2(0.405, 0.405)
+theme_override_font_sizes/font_size = 20
+text = "hi"
+label_settings = SubResource("LabelSettings_jatsq")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 51.0
+offset_top = -82.0
+offset_right = 91.0
+offset_bottom = -42.0
+script = ExtResource("6_6m3qh")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 0.999992
+offset_right = 120.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("5_nwjut")
+theme_override_font_sizes/font_size = 16
+text = "GO!"
+flat = true
+
+[node name="LineEdit" type="LineEdit" parent="Control"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -2.00001
+offset_right = 68.0
+offset_bottom = 29.0
+
+[connection signal="text_submitted" from="Control/LineEdit" to="Control" method="_on_line_edit_text_submitted"]
