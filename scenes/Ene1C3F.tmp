@@ -245,7 +245,6 @@ autoplay = "default"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_xr818")
-flip_h = true
 hframes = 4
 vframes = 3
 frame = 8

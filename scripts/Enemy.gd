@@ -6,7 +6,7 @@ const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz'
 
 @onready var word = $Label
 
-@onready var animation = $AnimatedSprite2D
+@onready var animation_player = $AnimationPlayer
 
 
 var should_die = false;
@@ -14,12 +14,15 @@ var should_die = false;
 func _ready():
 	add_to_group("Enemies")
 	word.text = generate_word(CHARACTERS, 3)
+	
+	# set default animation to looping
+	var a = animation_player.get_animation("default")
+	a.loop_mode = Animation.LOOP_LINEAR
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
-	#var velocity: Vector2 = -1 * SPEED
 	if (should_die):
 		return
 	
@@ -29,11 +32,10 @@ func _process(delta: float):
 
 
 func check_input_text(text: String):
-	print("hi im enemy, text is ")
 	if (text == word.text):
 		self.velocity.x = 0
 		should_die = true
-		animation.play("die")
+		animation_player.play("die")
 
 
 
@@ -43,9 +45,3 @@ func generate_word(chars, length):
 	for i in range(length):
 		word += chars[randi()% n_char]
 	return word
-
-
-func _on_animated_sprite_2d_animation_finished():
-	print(animation.animation)
-	if (animation.animation == "die"):
-		queue_free()

@@ -483,7 +483,7 @@ zoom = Vector2(4.175, 4.175)
 position = Vector2(-23, -12)
 sprite_frames = SubResource("SpriteFrames_1gtak")
 autoplay = "default"
-frame_progress = 0.164852
+frame_progress = 0.388222
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 
