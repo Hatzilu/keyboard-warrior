@@ -3,9 +3,15 @@ extends Node2D
 
 @onready var enemyScene = load("res://scenes/Enemy.tscn")
 
-@onready var scoreHud = $Camera2D/Control/Score
+@onready var scoreHud = %Score
+@onready var hud_wpm = %WPM
 
 @export var score = 0;
+@export var wpm: float = 0.0;
+
+@export var words_per_minute = 0;
+
+@export var accuracy = 0;
 
 
 @export var word_length = 3;
@@ -26,10 +32,15 @@ func _on_timer_timeout():
 	instance.position.x = 200
 	instance.position.y = -5
 	add_child(instance)
-	pass # Replace with function body.
 
 
 func on_enemy_died():
 	score += 10 * word_length
+	wpm += 1.0;
 	scoreHud.text = "Score: "+str(score)
+	hud_wpm.text = "WPM: "+str(wpm/60)
 	print("bro")
+
+
+func _on_metrics_timer_timeout():
+	wpm = 0;
