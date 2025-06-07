@@ -6,6 +6,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	input.grab_focus()
+	input.keep_editing_on_text_submit = true
 	pass # Replace with function body.
 
 
