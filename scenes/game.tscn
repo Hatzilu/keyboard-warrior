@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://eftoji41e71w"]
+[gd_scene format=3 uid="uid://eftoji41e71w"]
 
 [ext_resource type="Texture2D" uid="uid://ctcdvur27cewn" path="res://assets/sprites/world_tileset.png" id="1_6kfvj"]
 [ext_resource type="Script" uid="uid://brbfdbupyrd1b" path="res://scripts/game.gd" id="1_o00ow"]
@@ -206,7 +206,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_15fd0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -214,20 +214,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_us61m"]
 size = Vector2(14, 18)
 
-[node name="GameManager" type="Node2D"]
+[node name="GameManager" type="Node2D" unique_id=561318647]
 script = ExtResource("1_o00ow")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." unique_id=304057493]
 tile_set = SubResource("TileSet_kecun")
 format = 2
 layer_0/name = "Ground"
 layer_0/tile_data = PackedInt32Array(65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 589824, 0, 8, 655360, 0, 9, 655360, 0, 10, 720896, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 131067, 0, 1, 196603, 0, 1, 262139, 0, 1, 262140, 0, 1, 262141, 0, 1, 327677, 0, 1, 327678, 65536, 1, 327679, 0, 1, 262144, 0, 1, 262145, 65536, 1, 262146, 0, 1, 196610, 0, 1, 196611, 0, 1, 196612, 0, 1, 196613, 0, 1, 196614, 0, 1, 196619, 0, 1, 196620, 0, 1, 196621, 0, 1, 196622, 0, 1, 262155, 0, 1, 262150, 0, 1, 262149, 65536, 1, 262148, 0, 1, 262147, 0, 1, 327676, 0, 1, 327675, 0, 1, 327674, 0, 1, 262142, 0, 1, 262143, 65536, 0, 196608, 0, 1, 196609, 0, 1, 196604, 0, 1, 131068, 65536, 0, 131069, 0, 1, 131070, 65536, 1, 131071, 0, 1, 65536, 0, 1, 65537, 0, 1, 131074, 0, 1, 131075, 65536, 0, 131076, 0, 1, 131077, 0, 1, 131078, 0, 1, 131083, 0, 1, 131084, 0, 1, 131085, 65536, 0, 65549, 0, 1, 196605, 0, 1, 196606, 0, 1, 196607, 0, 1, 131072, 0, 1, 131073, 0, 1, 131086, 0, 1, 131087, 0, 1, 131088, 0, 1, 131089, 0, 1, 131090, 0, 1, 65554, 0, 1, 65555, 0, 1, 65553, 65536, 0, 65552, 0, 1, 65551, 65536, 1, 65550, 0, 1, 65548, 0, 1, 65547, 65536, 1, 65542, 0, 1, 65541, 65536, 0, 65540, 0, 1, 65539, 0, 1, 65538, 65536, 1, 262156, 0, 1, 262157, 0, 1, 262158, 0, 1, 262159, 65536, 1, 262160, 0, 1, 262161, 0, 1, 262162, 0, 1, 196624, 0, 1, 196623, 0, 1, 196625, 0, 1, 196626, 0, 1, 196627, 65536, 0, 262163, 0, 1, 131091, 0, 1, -65525, 524288, 3, -3, 0, 5, -65539, 0, 4, -131075, 0, 3, -5, 65536, 3, 196615, 262144, 9, 196616, 262144, 9, 196617, 262144, 9, 196618, 262144, 9, 262151, 262144, 10, 262152, 262144, 10, 262153, 262144, 10, 262154, 262144, 10)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1642167128]
 offset = Vector2(58.77, -14.315)
 zoom = Vector2(4.175, 4.175)
 
-[node name="Control" type="Control" parent="Camera2D"]
+[node name="Control" type="Control" parent="Camera2D" unique_id=284264896]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -79.0
@@ -235,7 +235,7 @@ offset_top = -89.0
 offset_right = -39.0
 offset_bottom = -49.0
 
-[node name="Score" type="Label" parent="Camera2D/Control"]
+[node name="Score" type="Label" parent="Camera2D/Control" unique_id=1965280167]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 3.0
@@ -245,7 +245,7 @@ theme_override_fonts/font = ExtResource("6_yf2ba")
 theme_override_font_sizes/font_size = 8
 text = "Score: 0"
 
-[node name="WPM" type="Label" parent="Camera2D/Control"]
+[node name="WPM" type="Label" parent="Camera2D/Control" unique_id=1772135674]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 3.0
@@ -256,19 +256,19 @@ theme_override_fonts/font = ExtResource("6_yf2ba")
 theme_override_font_sizes/font_size = 8
 text = "WPM: 0.0"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1163369284]
 position = Vector2(-23, -12)
 sprite_frames = SubResource("SpriteFrames_1gtak")
 autoplay = "default"
 frame_progress = 0.196623
 
-[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1486095616]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=288496588]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_us61m")
 
-[node name="Input" type="Control" parent="."]
+[node name="Input" type="Control" parent="." unique_id=1589982799]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 51.0
@@ -277,7 +277,7 @@ offset_right = 91.0
 offset_bottom = -42.0
 script = ExtResource("6_6m3qh")
 
-[node name="Button" type="Button" parent="Input"]
+[node name="Button" type="Button" parent="Input" unique_id=1222353341]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 0.999992
@@ -288,19 +288,19 @@ theme_override_font_sizes/font_size = 16
 text = "GO!"
 flat = true
 
-[node name="LineEdit" type="LineEdit" parent="Input"]
+[node name="LineEdit" type="LineEdit" parent="Input" unique_id=1087365775]
 layout_mode = 0
 offset_left = -34.0
 offset_top = -2.00001
 offset_right = 68.0
 offset_bottom = 29.0
 
-[node name="EnemyTimer" type="Timer" parent="."]
+[node name="EnemyTimer" type="Timer" parent="." unique_id=1507516258]
 wait_time = 1.5
 autostart = true
 script = ExtResource("7_t3f8o")
 
-[node name="MetricsTimer" type="Timer" parent="."]
+[node name="MetricsTimer" type="Timer" parent="." unique_id=1393468415]
 unique_name_in_owner = true
 wait_time = 60.0
 autostart = true
