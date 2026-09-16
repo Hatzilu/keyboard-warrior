@@ -216,22 +216,6 @@ region = Rect2(96, 144, 48, 48)
 atlas = ExtResource("4_gee14")
 region = Rect2(144, 144, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
-atlas = ExtResource("4_gee14")
-region = Rect2(0, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
-atlas = ExtResource("4_gee14")
-region = Rect2(48, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
-atlas = ExtResource("4_gee14")
-region = Rect2(96, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bhx41"]
-atlas = ExtResource("4_gee14")
-region = Rect2(144, 48, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
 atlas = ExtResource("4_gee14")
 region = Rect2(0, 0, 48, 48)
@@ -287,23 +271,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bt5mj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e1j6l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pl11u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bhx41")
-}],
-"loop": 1,
-"name": &"cast_transition",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_0tnpc")
 }, {
 "duration": 1.0,
@@ -323,86 +290,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_us61m"]
 size = Vector2(31, 38)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0tnpc"]
-animation = &"cast_anim"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vtaks"]
-animation = &"cast_anim_trans"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kvpfn"]
-animation = &"default"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dinhu"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kvuet"]
-advance_condition = &"is_casting"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_trtic"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ir15t"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_g4v7s"]
-states/End/position = Vector2(359, 32)
-states/Start/position = Vector2(359, 127)
-states/cast_anim/node = SubResource("AnimationNodeAnimation_0tnpc")
-states/cast_anim/position = Vector2(929, 103)
-states/cast_anim_trans/node = SubResource("AnimationNodeAnimation_vtaks")
-states/cast_anim_trans/position = Vector2(761, 195)
-"states/default 2/node" = SubResource("AnimationNodeAnimation_kvpfn")
-"states/default 2/position" = Vector2(574, 127)
-transitions = ["Start", "default 2", SubResource("AnimationNodeStateMachineTransition_dinhu"), "default 2", "cast_anim_trans", SubResource("AnimationNodeStateMachineTransition_kvuet"), "cast_anim_trans", "cast_anim", SubResource("AnimationNodeStateMachineTransition_trtic"), "cast_anim", "default 2", SubResource("AnimationNodeStateMachineTransition_ir15t")]
-graph_offset = Vector2(67, 0)
-
-[sub_resource type="Animation" id="Animation_vtaks"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"cast"]
-}
-
-[sub_resource type="Animation" id="Animation_kvpfn"]
-resource_name = "cast_anim"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"cast", &"cast"]
-}
-
-[sub_resource type="Animation" id="Animation_dinhu"]
-resource_name = "cast_anim_trans"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"cast_transition", &"cast_transition"]
-}
-
 [sub_resource type="Animation" id="Animation_0tnpc"]
 resource_name = "default"
 tracks/0/type = "value"
@@ -412,19 +299,19 @@ tracks/0/path = NodePath(".:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [&"default", &"default"]
+"values": []
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vtaks"]
 _data = {
-&"RESET": SubResource("Animation_vtaks"),
-&"cast_anim": SubResource("Animation_kvpfn"),
-&"cast_anim_trans": SubResource("Animation_dinhu"),
 &"default": SubResource("Animation_0tnpc")
 }
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_g4v7s"]
+states/Start/position = Vector2(364, 66)
 
 [node name="GameManager" type="Node2D" unique_id=561318647]
 script = ExtResource("1_o00ow")
@@ -481,15 +368,11 @@ script = ExtResource("5_0tnpc")
 position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_us61m")
 
-[node name="AnimationTree" type="AnimationTree" parent="AnimatedSprite2D" unique_id=275962588]
-tree_root = SubResource("AnimationNodeStateMachine_g4v7s")
-anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/is_casting = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=223030425]
 libraries/ = SubResource("AnimationLibrary_vtaks")
 
-[node name="TypingTimer" type="Timer" parent="AnimatedSprite2D" unique_id=2049212541]
+[node name="AnimationTree" type="AnimationTree" parent="AnimatedSprite2D" unique_id=275962588]
+tree_root = SubResource("AnimationNodeStateMachine_g4v7s")
 
 [node name="Input" type="Control" parent="." unique_id=1589982799]
 layout_mode = 3
@@ -529,10 +412,12 @@ wait_time = 60.0
 autostart = true
 script = ExtResource("8_a1hdy")
 
-[connection signal="timeout" from="AnimatedSprite2D/TypingTimer" to="AnimatedSprite2D" method="_on_typing_timer_timeout"]
+[node name="TypingTimer" type="Timer" parent="." unique_id=2049212541]
+
 [connection signal="focus_entered" from="Input/LineEdit" to="Input" method="_on_line_edit_focus_entered"]
 [connection signal="text_changed" from="Input/LineEdit" to="AnimatedSprite2D" method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="Input/LineEdit" to="AnimatedSprite2D" method="_on_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Input/LineEdit" to="Input" method="_on_line_edit_text_submitted"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="MetricsTimer" to="." method="_on_metrics_timer_timeout"]
+[connection signal="timeout" from="TypingTimer" to="AnimatedSprite2D" method="_on_typing_timer_timeout"]

@@ -18,4 +18,5 @@ func _on_line_edit_text_submitted(new_text: String):
 	print(new_text)
 	var text = input.text.to_lower()
 	input.clear()
+	
 	get_tree().call_group("Enemies", "check_input_text",text)
